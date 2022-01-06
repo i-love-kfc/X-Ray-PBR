@@ -31,38 +31,40 @@ struct CDataStorageBucketList {
 		typename _data_storage,
 		template <typename _T> class _vertex = CEmptyClassTemplate
 	>
-	class CDataStorage : public CDataStorageDoubleLinkedList<false>::CDataStorage<_data_storage,BucketList<_vertex>::_vertex> {
-	public:
-		typedef typename CDataStorageDoubleLinkedList<false>::CDataStorage<
-			_data_storage,
-			BucketList<_vertex>::_vertex
-		>											inherited;
-		typedef typename inherited::inherited_base	inherited_base;
-		typedef typename inherited::CGraphVertex	CGraphVertex;
-		typedef typename CGraphVertex::_dist_type	_dist_type;
-		typedef typename CGraphVertex::_index_type	_index_type;
+		class CDataStorage : public CDataStorageDoubleLinkedList<false>::CDataStorage<_data_storage, BucketList<_vertex>::_vertex> {
+		public:
+			typedef typename CDataStorageDoubleLinkedList<false>::CDataStorage<
+				_data_storage,
+				BucketList<_vertex>::_vertex
+			>											inherited;
+			typedef typename inherited::inherited_base	inherited_base;
+			typedef typename inherited::CGraphVertex	CGraphVertex;
+			typedef typename CGraphVertex::_dist_type	_dist_type;
+			typedef typename CGraphVertex::_index_type	_index_type;
 
-	protected:
-		_dist_type				m_min_bucket_value;
-		_dist_type				m_max_bucket_value;
-		CGraphVertex			*m_buckets[bucket_count];
-		u32						m_min_bucket_id;
+		protected:
+			using inherited::current_path_id;
 
-	public:
-		IC						CDataStorage		(const u32 vertex_count);
-		virtual					~CDataStorage		();
-		IC		void			init				();
-		IC		void			add_best_closed		();
-		IC		bool			is_opened_empty		();
-		IC		u32				compute_bucket_id	(CGraphVertex &vertex) const;
-		IC		void			verify_buckets		() const;
-		IC		void			add_to_bucket		(CGraphVertex &vertex, u32 bucket_id);
-		IC		void			add_opened			(CGraphVertex &vertex);
-		IC		void			decrease_opened		(CGraphVertex &vertex, const _dist_type value);
-		IC		void			remove_best_opened	();
-		IC		CGraphVertex	&get_best			();
-		IC		void			set_min_bucket_value(const _dist_type min_bucket_value);
-		IC		void			set_max_bucket_value(const _dist_type max_bucket_value);
+			_dist_type				m_min_bucket_value;
+			_dist_type				m_max_bucket_value;
+			CGraphVertex* m_buckets[bucket_count];
+			u32						m_min_bucket_id;
+
+		public:
+			IC						CDataStorage(const u32 vertex_count);
+			virtual					~CDataStorage();
+			IC		void			init();
+			IC		void			add_best_closed();
+			IC		bool			is_opened_empty();
+			IC		u32				compute_bucket_id(CGraphVertex& vertex) const;
+			IC		void			verify_buckets() const;
+			IC		void			add_to_bucket(CGraphVertex& vertex, u32 bucket_id);
+			IC		void			add_opened(CGraphVertex& vertex);
+			IC		void			decrease_opened(CGraphVertex& vertex, const _dist_type value);
+			IC		void			remove_best_opened();
+			IC		CGraphVertex& get_best();
+			IC		void			set_min_bucket_value(const _dist_type min_bucket_value);
+			IC		void			set_max_bucket_value(const _dist_type max_bucket_value);
 	};
 };
 

@@ -352,6 +352,7 @@ void CUIMainIngameWnd::SetAmmoIcon (const shared_str& sect_name)
 	UIWeaponIcon.SetHeight	(h);
 };
 
+#include <functional>
 void CUIMainIngameWnd::Update()
 {
 #ifdef DEBUG

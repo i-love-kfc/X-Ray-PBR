@@ -1071,6 +1071,7 @@ struct objects_ptrs_equal : public std::binary_function<Feel::Touch::DenyTouch, 
 	}
 };
 
+#include <functional>
 void GlobalFeelTouch::update()
 {
 	//we ignore P and R arguments, we need just delete evaled denied objects...

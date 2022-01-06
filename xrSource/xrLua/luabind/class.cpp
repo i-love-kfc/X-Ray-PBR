@@ -29,12 +29,12 @@
 
 #include <cstring>
 //#include <iostream>
-#ifdef NDEBUG
+//#ifdef NDEBUG
 void boost::throw_exception	( std::exception const & )
 {
 	abort();
 }
-#endif 
+//#endif 
 #ifdef NDEBUG
 void std::terminate() // Compiler Error C2883 : 'name' : function declaration conflicts with 'identifier' introduced by using-declaration
 {

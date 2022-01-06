@@ -3,9 +3,7 @@
 #include "..\environment.h"
 
 #include "..\xrSky\ArHosekSkyModel.h"
-
-
-
+#include <cmath>
 
     // Returns the result of performing a irradiance/illuminance integral over the portion
     // of the hemisphere covered by a region with angular radius = theta
